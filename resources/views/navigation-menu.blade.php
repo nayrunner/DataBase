@@ -10,10 +10,18 @@
                     </a>
                 </div>
 
+    
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        ร้านค้า
+                    Home
+                    </x-jet-nav-link>
+                </div>
+
+                @if(Auth::user()->role != 'ไม่ใช่พนักงาน')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('alluser') }}" >
+                    รายชื่อusers
                     </x-jet-nav-link>
                 </div>
 
@@ -28,6 +36,7 @@
                         เพิ่มสินค้า
                     </x-jet-nav-link>
                 </div>
+                @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

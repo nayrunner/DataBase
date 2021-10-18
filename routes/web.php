@@ -27,10 +27,23 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard',compact('users'));
 })->name('dashboard');
 
-Route::get('/department',[DepartmentController::class,'index'])->name('department');
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 
-Route::get('/product',[ProductController::class,'index'])->name('product');
+    Route::get('/alluser',function(){
+        $users = user::all();
+        return view('profile.alluser',compact('users'));
+    })->name('alluser');
 
-Route::post('/product/add',[ProductController::class,'store'])->name('addProduct');
+    //product
+    Route::get('/product',[ProductController::class,'index'])->name('product');
+    Route::post('/product/add',[ProductController::class,'store'])->name('addProduct');
 
-Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
+    //department
+    Route::get('/department',[DepartmentController::class,'index'])->name('department');
+    Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
+    Route::get('/department/edit/{user_id}',[DepartmentController::class,'edit']);
+    Route::post('/department/update/{user_id}',[DepartmentController::class,'update']);
+    Route::get('/department/softdelete/{user_id}',[DepartmentController::class,'softdelete']);
+    Route::get('/department/restore/{user_id}',[DepartmentController::class,'restore']);
+    Route::get('/department/forcedelete/{user_id}',[DepartmentController::class,'forcedelete']);
+});
