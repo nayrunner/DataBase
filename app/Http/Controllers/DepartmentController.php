@@ -70,7 +70,7 @@ class DepartmentController extends Controller
     public function forcedelete($id){
         $forcedelete=Department::onlyTrashed()->find($id)->forceDelete();
         user::find($id)->update([
-            'role' => 'ไม่ใช่พนักงาน'
+            'role' => 'customer'
         ]);
         return redirect()->route('department')->with('success','ลบข้อมูลอย่างถาวรเสร็จสิ้น');
     }

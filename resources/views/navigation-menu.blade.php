@@ -18,7 +18,7 @@
                     </x-jet-nav-link>
                 </div>
 
-                @if(Auth::user()->role != 'ไม่ใช่พนักงาน')
+                @if(Auth::user()->role != 'customer')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('alluser') }}" >
                     รายชื่อusers
@@ -32,11 +32,25 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('order') }}" >
+                        รายละเอียดออเดอร์
+                    </x-jet-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('product') }}">
                         เพิ่มสินค้า
                     </x-jet-nav-link>
                 </div>
                 @endif
+
+
+                @if(Auth::user()->role != 'customer')
+
+                @endif
+
+
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

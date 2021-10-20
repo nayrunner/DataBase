@@ -5,7 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\DepartmentController;
 use App\Models\department;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +46,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/department/softdelete/{user_id}',[DepartmentController::class,'softdelete']);
     Route::get('/department/restore/{user_id}',[DepartmentController::class,'restore']);
     Route::get('/department/forcedelete/{user_id}',[DepartmentController::class,'forcedelete']);
+
+    //order
+    Route::get('/order',[OrderController::class,'index'])->name('order');
+    Route::get('/order/edit/{id}',[OrderController::class,'edit']);
+    Route::post('/order/update/{id}',[OrderController::class,'update']);
 });
