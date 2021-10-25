@@ -18,6 +18,7 @@ class DepartmentController extends Controller
         $request -> validate([
             'user_id' => 'required|unique:departments',
             'department_name' => 'required|max:50',
+            'department_type' => 'required|max:50',
         ],
     );
 
@@ -25,10 +26,11 @@ class DepartmentController extends Controller
     $department -> user_id = $request -> user_id;
     $department -> id = $request -> user_id;
     $department -> department_name = $request -> department_name;
+    $department -> department_type = $request -> department_type;
     $department -> save();
 
     user::find($request -> user_id)->update([
-        'role' => $request -> department_name
+        'role' => $request -> department_type
     ]);
     return redirect()->back()->with('success','บันทึกข้อมูลเสร็จสิ้น');
     }
@@ -43,14 +45,16 @@ class DepartmentController extends Controller
         //dd($id,$request -> department_name);
         $request -> validate([
             'department_name' => 'required|max:50',
+            'department_type' => 'required|max:50',
         ],
     );
 
     Department::find($id)->update([
-        'department_name' => $request -> department_name
+        'department_name' => $request -> department_name,
+        'department_type' => $request -> department_type
     ]);
     user::find($id)->update([
-        'role' => $request -> department_name
+        'role' => $request -> department_type
     ]);
     return redirect()->route('department')->with('success','อัพเดตข้อมูลเสร็จสิ้น');
         

@@ -11,6 +11,8 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'product_name'
+        'product_name',
+        'product_vendor',
+        'scale'
     ];
 }

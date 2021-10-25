@@ -37,16 +37,21 @@
                     </x-jet-nav-link>
                 </div>
 
+                @if(Auth::user()->role == 'sale')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('product') }}">
                         เพิ่มสินค้า
                     </x-jet-nav-link>
                 </div>
                 @endif
+                @endif
 
 
-                @if(Auth::user()->role != 'customer')
-
+                @if(Auth::user()->role == 'customer')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('productCus') }}">
+                        สินค้า
+                    </x-jet-nav-link>
                 @endif
 
 

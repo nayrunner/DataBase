@@ -14,7 +14,7 @@
                         <form action="{{url('/department/update/'.$department->user_id)}}" method="post">
                         @csrf
                             <div class="form-group">
-                            <label for="department_name">แผนก</label>
+                            <label for="department_name">ตําแหน่ง</label>
                             <input type="text" class="form-control" name="department_name" value="{{$department->department_name}}">
                             </div>
                             @if(session("success"))
@@ -24,6 +24,15 @@
                             <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
                             @enderror
                             <br>
+                            <label for="department_type">แผนก</label>
+                            <input type="text" class="form-control" name="department_type" value="{{$department->department_type}}">
+                            </div>
+                            @if(session("success"))
+                            <span class ="alert ">{{session('success')}}</span>
+                            @endif
+                            @error('department_type')
+                            <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
+                            @enderror
                             <input type="submit" value="update" class = "btn btn-primary">
                         </form>
                     </div>

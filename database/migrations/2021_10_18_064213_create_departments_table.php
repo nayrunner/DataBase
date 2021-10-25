@@ -16,6 +16,7 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('department_name');
+            $table->string('department_type');
             $table->timestamps();
             $table->softDeletes();
         });

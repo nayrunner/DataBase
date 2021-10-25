@@ -14,14 +14,22 @@
                     <table class="table table-dark table-striped">
                         <thead>
     <tr>
+    <th scope="col">หมายเลขสินค้า</th>
         <th scope="col">ชื่อสินค้า</th>
+        <th scope="col">ผู้จัดจําหน่าย</th>
+        <th scope="col">อัตราส่วนขนาด</th>
+        <th scope="col">แก้ไขข้อมูล</th>
     </tr>
     </thead>
     <tbody>
-        @php($i=1)
         @foreach($products as $row)
     <tr>
+    <td>{{$row -> id}}</td>
         <td>{{$row -> product_name}}</td>
+        <td>{{$row -> product_vendor}}</td>
+        <td>{{$row -> scale}}</td>
+        <td><a href="{{url('/product/edit/'.$row-> id)}}" class = "btn btn-primary">แก้ไข</a></td>
+
         </tr>
         @endforeach
     </tbody>

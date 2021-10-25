@@ -37,6 +37,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     //product
     Route::get('/product',[ProductController::class,'index'])->name('product');
     Route::post('/product/add',[ProductController::class,'store'])->name('addProduct');
+    Route::get('/product/customer',[ProductController::class,'productCus'])->name('productCus');
+    Route::get('/product/edit/{id}',[ProductController::class,'edit']);
+    Route::post('/product/update/{id}',[ProductController::class,'update']);
+    Route::get('/product/purchase/{id}{user_id}',[ProductController::class,'purchase']);
+
 
     //department
     Route::get('/department',[DepartmentController::class,'index'])->name('department');
