@@ -16,7 +16,6 @@
                             <div class="form-group">
                             <label for="shipped_date">วันที่จัดส่ง</label>
                             <input type="text" class="form-control" name="shipped_date" value="{{$orders->shipped_date}}">
-                            </div>
                             @if(session("success"))
                             <span class ="alert ">{{session('success')}}</span>
                             @endif
@@ -27,11 +26,20 @@
 
                             <label for="comment">คอมเมนต์</label>
                             <input type="text" class="form-control" name="comment" value="{{$orders->comment}}">
-                            </div>
                             @if(session("success"))
                             <span class ="alert ">{{session('success')}}</span>
                             @endif
                             @error('department_name')
+                            <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
+                            @enderror
+
+                            @csrf
+                            <label for="status">สถานะ</label>
+                            <input type="text" class="form-control" name="status" value="{{$orders->status}}">
+                            @if(session("success"))
+                            <span class ="alert ">{{session('success')}}</span>
+                            @endif
+                            @error('status')
                             <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
                             @enderror
 

@@ -10,6 +10,15 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+
+    function executeQuery($query)
+{
+    $connect = mysqli_connect("http://127.0.0.1:8000", "root", "", "basic");
+    $result = mysqli_query($connect, $query);
+    return $result;
+}
+
+
     public function index(){
         $products = Product::paginate(5);
         return view('product.product',compact('products'));
@@ -71,6 +80,7 @@ class ProductController extends Controller
         $orders -> customer_id = $user_id;
         $orders -> status = "waiting for payment";
         $orders -> price =  $products ->  price;
+        $orders -> product_id =  $products ->  id;
         $orders -> save();
         $protemp = Product::find($id);
         Product::find($id)->update([

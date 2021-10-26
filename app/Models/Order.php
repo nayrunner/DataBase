@@ -21,5 +21,6 @@ class Order extends Model
         'comment',
         'price',
         'promotioncode',
+        'product_id',
     ];
 }

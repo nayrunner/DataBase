@@ -10,26 +10,28 @@ use App\Models\User;
 class OrderController extends Controller
 {
     public function index(){
-        $orders = Order::paginate(5);
+        $orders = Order::paginate(10);
         return view('order.index',compact('orders'));
     } 
 
     public function edit($id){
         //dd($id);
         $orders = Order::find($id);
-        return view('order.edit',compact('orders','promotions'));
+        return view('order.edit',compact('orders'));
     }
 
     public function update(Request $request,$id){
         //dd($id,$request -> department_name);
         $request -> validate([
             'shipped_date' => 'required|max:50',
+            'status' => 'required|max:50',
             'comment'=> 'required|max:50',
         ],
     );
 
     Order::find($id)->update([
         'shipped_date' => $request -> shipped_date,
+        'status' => $request->status,
         'comment' => $request -> comment
     ]);
     return redirect()->route('order')->with('success','อัพเดตข้อมูลเสร็จสิ้น');
@@ -57,13 +59,27 @@ class OrderController extends Controller
         ],
     );
 
+    $ordertemp = Order::find($id);
+
+    if($ordertemp -> status  == "waiting for payment"){
     Order::find($id)->update([
         'payment' => $request -> payment,
         'require_date' => $request -> require_date,
         'promotioncode' => $request -> promotioncode,
         'status' => "in progress"
     ]);
-    $ordertemp = Order::find($id);
+}
+
+    if($ordertemp -> status  == "preorder and waiting for payment"){
+        Order::find($id)->update([
+            'payment' => $request -> payment,
+            'require_date' => $request -> require_date,
+            'promotioncode' => $request -> promotioncode,
+            'status' => "Preorder in progress"
+        ]);
+    }
+
+
     $membertemp = User::find($user_id);
     $promotions = Promotion::all();
 
@@ -71,6 +87,9 @@ class OrderController extends Controller
         if($row->code == $request -> promotioncode){
             Order::find($id)->update([
                 'price' => $ordertemp -> price - $row -> discount,
+            ]);
+            Promotion::find($row -> id)->update([
+                'amount' => $row -> amount -1,
             ]);
         }
     }
@@ -80,6 +99,13 @@ class OrderController extends Controller
     ]);
     return redirect()->route('ordercus')->with('success','อัพเดตข้อมูลเสร็จสิ้น');
         
+    }
+
+    public function cusdeny($id){
+        Order::find($id)->update([
+            'status' => "canceled",
+        ]);
+        return redirect()->route('ordercus')->with('success','ยกเลิกออเดอร์เสร็จสิ้น');
     }
 
 }

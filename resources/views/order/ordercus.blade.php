@@ -25,11 +25,13 @@
         <th scope="col">วันที่จัดส่ง</th>
         <th scope="col">คอมเมนต์</th>
         <th scope="col">แก้ไข</th>
+        <th scope="col">ยกเลิก</th>
     </tr>
     </thead>
     <tbody>
         @foreach($orders as $row)
-        @if($row -> customer_id == Auth::user()->id && $row -> status == "waiting for payment")
+        @if($row -> customer_id == Auth::user()->id )
+        @if($row -> status == "waiting for payment" || $row -> status == "preorder and waiting for payment")
         <tr>
         <td>{{$row -> id}}</td>
         <td>{{$row -> customer_id}}</td>
@@ -40,7 +42,9 @@
         <td>{{$row -> shipped_date}}</td>
         <td>{{$row -> comment}}</td>
         <td><a href="{{url('/ordercus/edit/'.$row-> id)}}" class = "btn btn-primary">ยืนยันการซื้อ</a></td>
+        <td><a href="{{url('/ordercus/deny/'.$row-> id)}}" class = "btn btn-danger">ยกเลิกออเดอร์</a></td>
         </tr>
+        @endif
         @endif
         @endforeach
     </tbody>
@@ -65,6 +69,7 @@
                         <thead>
                     <tr>
         <th scope="col">หมายเลขคําสั่งซื้อ</th>
+        <th scope="col">หมายเลขสินค้า</th>
         <th scope="col">หมายเลขลูกค้า</th>
         <th scope="col">การชําระเงิน</th>
         <th scope="col">ราคา</th>
@@ -76,9 +81,11 @@
     </thead>
     <tbody>
         @foreach($orders as $row)
-        @if($row -> customer_id == Auth::user()->id && $row -> status == "in progress")
+        @if($row -> customer_id == Auth::user()->id)
+        @if($row -> status == "in progress" || $row -> status == "Preorder in progress")
         <tr>
         <td>{{$row -> id}}</td>
+        <td>{{$row -> product_id}}</td>
         <td>{{$row -> customer_id}}</td>
         <td>{{$row -> payment}}</td>
         <td>{{$row -> price}}</td>
@@ -87,6 +94,7 @@
         <td>{{$row -> shipped_date}}</td>
         <td>{{$row -> comment}}</td>
         </tr>
+        @endif
         @endif
         @endforeach
     </tbody>

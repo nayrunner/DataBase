@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('comment');
             $table->string('promotioncode');
             $table->integer('price');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }
