@@ -57,4 +57,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/order/edit/{id}',[OrderController::class,'edit']);
     Route::post('/order/update/{id}',[OrderController::class,'update']);
     Route::get('/ordercus',[OrderController::class,'ordercus'])->name('ordercus');
+    Route::get('/ordercus/edit/{id}',[OrderController::class,'cusedit']);
+    Route::post('/ordercus/update/{id}',[OrderController::class,'cusupdate']);
 });
