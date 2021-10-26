@@ -64,6 +64,7 @@ class ProductController extends Controller
         $products = Product::find($id);
         $orders = new Order;
         $orders -> customer_id = $user_id;
+        $orders -> status = "waiting for payment";
         $orders -> save();
         return redirect()->route('productCus')->with('success','ซื้อเสร็จสิ้น');   
 

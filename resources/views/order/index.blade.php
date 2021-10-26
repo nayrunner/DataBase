@@ -30,7 +30,7 @@
         @foreach($orders as $row)
         <tr>
         <td>{{$row -> id}}</td>
-        <td>{{$row -> user_id}}</td>
+        <td>{{$row -> customer_id}}</td>
         <td>{{$row -> payment}}</td>
         <td>{{$row -> status}}</td>
         <td>{{$row -> require_date}}</td>
