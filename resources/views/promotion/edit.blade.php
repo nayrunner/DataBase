@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            การจัดการสินค้า
+            การจัดการโปรโมชั่น
         </h2>
     </x-slot>
 
@@ -9,44 +9,44 @@
         <div class = "container">
         <div class = "row">
             <div class="col-md-8">
-                 <div class ="card-header">แบบฟอร์มแก้ไขสินค้า(ที่มีid = {{$products->id}})</div>
+                 <div class ="card-header">แบบฟอร์มแก้ไขโปรโมชั่น</div>
                     <div class = "card-body">
-                        <form action="{{url('/product/update/'.$products->id)}}" method="post">
+                        <form action="{{url('/promotion/update/'.$promotions->id)}}" method="post">
                         @csrf
                             <div class="form-group">
-                            <label for="product_name">ชื่อสินค้า</label>
-                            <input type="text" class="form-control" name="product_name" value="{{$products->product_name}}">
+                            <label for="code">code</label>
+                            <input type="text" class="form-control" name="code" value="{{$promotions->code}}">
                             @if(session("success"))
                             <span class ="alert ">{{session('success')}}</span>
                             @endif
-                            @error('product_name')
+                            @error('code')
+                            <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร/ห้ามกรอกซํ้า</span>
+                            @enderror
+                            <br>
+                            <label for="discount">discount</label>
+                            <input type="text" class="form-control" name="discount" value="{{$promotions->discount}}">
+                            @if(session("success"))
+                            <span class ="alert ">{{session('success')}}</span>
+                            @endif
+                            @error('discount')
                             <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
                             @enderror
                             <br>
-                            <label for="product_vendor">ผู้จัดจําหน่าย</label>
-                            <input type="text" class="form-control" name="product_vendor" value="{{$products->product_vendor}}">
+                            <label for="amount">amount</label>
+                            <input type="text" class="form-control" name="amount" value="{{$promotions->amount}}">
                             @if(session("success"))
                             <span class ="alert ">{{session('success')}}</span>
                             @endif
-                            @error('product_vendor')
+                            @error('amount')
                             <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
                             @enderror
                             <br>
-                            <label for="scale">อัตราส่วนขนาด</label>
-                            <input type="text" class="form-control" name="scale" value="{{$products->scale}}">
+                            <label for="expired_date">expired_date</label>
+                            <input type="text" class="form-control" name="expired_date" value="{{$promotions->expired_date}}">
                             @if(session("success"))
                             <span class ="alert ">{{session('success')}}</span>
                             @endif
-                            @error('scale')
-                            <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
-                            @enderror
-                            <br>
-                            <label for="remain_in_stock">จํานวนคงเหลือ</label>
-                            <input type="text" class="form-control" name="remain_in_stock" value="{{$products->remain_in_stock}}">
-                            @if(session("success"))
-                            <span class ="alert ">{{session('success')}}</span>
-                            @endif
-                            @error('remain_in_stock')
+                            @error('expired_date')
                             <span class="text-danger">ต้องกรอกช่องนี้/ห้ามเกิน50อักษร</span>
                             @enderror
                             <br>

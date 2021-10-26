@@ -19,5 +19,7 @@ class Order extends Model
         'require_date',
         'shipped_date',
         'comment',
+        'price',
+        'promotioncode',
     ];
 }

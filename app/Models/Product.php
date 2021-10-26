@@ -13,6 +13,8 @@ class Product extends Model
     protected $fillable = [
         'product_name',
         'product_vendor',
-        'scale'
+        'scale',
+        'price',
+        'remain_in_stock',
     ];
 }

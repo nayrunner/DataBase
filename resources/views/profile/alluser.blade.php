@@ -14,6 +14,7 @@
         <th scope="col">ชื่อ</th>
         <th scope="col">อีเมล</th>
         <th scope="col">บทบาท</th>
+        <th scope="col">memberpoint</th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
         <td>{{$row -> name}}</td>
         <td>{{$row -> email}}</td>
         <td>{{$row -> role}}</td>
+        <td>{{$row -> memberpoint}}</td>
         </tr>
         @endforeach
     </tbody>

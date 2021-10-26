@@ -19,6 +19,7 @@
         <th scope="col">หมายเลขคําสั่งซื้อ</th>
         <th scope="col">หมายเลขลูกค้า</th>
         <th scope="col">การชําระเงิน</th>
+        <th scope="col">ราคา</th>
         <th scope="col">สถานะ</th>
         <th scope="col">วันที่ต้องการ</th>
         <th scope="col">วันที่จัดส่ง</th>
@@ -32,6 +33,7 @@
         <td>{{$row -> id}}</td>
         <td>{{$row -> customer_id}}</td>
         <td>{{$row -> payment}}</td>
+        <td>{{$row -> price}}</td>
         <td>{{$row -> status}}</td>
         <td>{{$row -> require_date}}</td>
         <td>{{$row -> shipped_date}}</td>

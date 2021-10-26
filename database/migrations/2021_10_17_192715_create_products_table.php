@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->string('product_vendor');
             $table->string('scale');
+            $table->integer('price');
+            $table ->integer('remain_in_stock');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Models\department;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\promotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,5 +59,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::post('/order/update/{id}',[OrderController::class,'update']);
     Route::get('/ordercus',[OrderController::class,'ordercus'])->name('ordercus');
     Route::get('/ordercus/edit/{id}',[OrderController::class,'cusedit']);
-    Route::post('/ordercus/update/{id}',[OrderController::class,'cusupdate']);
+    Route::post('/ordercus/update/{id}{user_id}',[OrderController::class,'cusupdate']);
+
+    //promotion
+    Route::get('/promotion',[promotionController::class,'promotion'])->name('promotion');
+    Route::post('/promotion/add',[promotionController::class,'store'])->name('addPromotion');
+    Route::get('/promotion/edit/{id}',[promotionController::class,'edit']);
+    Route::post('/promotion/update/{id}',[promotionController::class,'update']);
 });
